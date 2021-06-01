@@ -24,17 +24,26 @@ void CSceneGame::Init() {
 	Player->h = 25;
 	Player->mEnabled = true;
 
-	int map[6][8] =
+	int map[15][8] =
 	{
-		{ 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 0, 1, 0, 0, 0, 1, 1 },
-		{ 1, 2, 0, 0, 1, 0, 0, 1 },
-		{ 1, 0, 1, 2, 0, 0, 1, 1 },
-		{ 1, 0, 0, 0, 1, 2, 0, 1 },
+		{ 1, 1, 1, 1, 1, 1, 1, 1},
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 2, 0, 0, 0, 0, 2, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 2, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 1 },
 		{ 1, 1, 1, 1, 1, 1, 1, 1 },
 	};
 
-	for (int j = 0; j < 6; j++) {
+	for (int j = 0; j < 15; j++) {
 		for (int i = 0; i < 8; i++) {
 			//mapの要素が1の時、四角形配置
 			if (map[j][i] == 1) {
@@ -42,7 +51,7 @@ void CSceneGame::Init() {
 				//四角形に値を設定
 				Map->mEnabled = true;
 				Map->x = i * 100 - 350;
-				Map->y = j * -100 + 250;
+				Map->y = j * -100 + 350;
 				Map->w = 50;
 				Map->h = 50;
 			}
@@ -52,7 +61,7 @@ void CSceneGame::Init() {
 				Enemy->y = j * -100 + 250;
 				//右へ移動
 				Enemy->mFx = 0;
-				Enemy->mFy = 1;
+				Enemy->mFy = -1;
 			}
 		}
 	}
@@ -99,6 +108,25 @@ void CSceneGame::Update() {
 			itr = VectorRect.erase(itr);
 		}
 	}
+	//描画範囲変数の作成
+	double mLeft, mRight, mBottm = -300.0, mTop = 300.0;
+	//画面範囲左の設定
+	mLeft = CPlayer::spInstance->x - 550.0;
+	//画面範囲右の設定
+	mRight = mLeft + 800.0;
+	//画面範囲下の設定
+	mBottm = CPlayer::spInstance->y - 550.0;
+	//画面範囲上の設定
+	mTop = mBottm + 800.0f;
+	//画面投影範囲の変更
+	//行列をプロジェクションモードへ変更
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();  //行列を初期化
+	//2Dの画面を設定
+	gluOrtho2D(mLeft, mRight, mBottm, mTop);
+	//行列をモデルビューモードへ変更
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();   //行列を初期化
 
 	for (int i = 0; i < VectorRect.size(); i++) {
 		//描画処理

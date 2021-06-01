@@ -20,7 +20,7 @@ void CEnemy::Update() {
 	}
 	else {
 		//’e‚ð4”­Žl•û‚Ö”­ŽË‚·‚é
-		for (int i = 0; i < 4; i++) {
+		for (int i = 2; i < 3; i++) {
 			CBullet *EBullet = new CBullet();
 			//À•WÝ’è
 			EBullet->x = x;

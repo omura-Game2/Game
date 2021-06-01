@@ -2,6 +2,7 @@
 #include "CKey.h"
 #include "CBullet.h"
 
+CPlayer*CPlayer::spInstance = 0;
 //extern：他のソースファイルの外部変数にアクセスする宣言
 extern CTexture Texture;
 
@@ -10,6 +11,7 @@ CPlayer::CPlayer()
 , FireCount(0)
 {
 	mTag = EPLAYER;
+	spInstance = this;
 }
 
 void CPlayer::Update() {
@@ -19,33 +21,22 @@ void CPlayer::Update() {
 		x -= 3;
 		mFx = -1;
 		mFy = 0;
-		if (x - w < -400) {
-			x = -400 + w;
-		}
 	}
 	if (CKey::Push('D')) {
 		x += 3;
 		mFx = 1;
 		mFy = 0;
-		if (x + w > 400) {
-			x = 400 - w;
-		}
 	}
 	if (CKey::Push('W')) {
 		y += 3;
 		mFx = 0;
 		mFy = 1;
-		if (y + h > 300) {
-			y = 300 - h;
 		}
-	}
+
 	if (CKey::Push('S')) {
 		y -= 3;
 		mFx = 0;
 		mFy = -1;
-		if (y - h < -300) {
-			y = -300 + h;
-		}
 	}
 
 	//スペースキーで弾発射

@@ -19,7 +19,7 @@ void CBullet::Update() {
 		//ˆÚ“®
 		x += mFx;
 		y += mFy;
-		if (x > 400 || x < -400 || y > 300 || y < -300)
+		if (x > 800 || x < -1000 || y > 800 || y < -1000)
 			mEnabled = false;
 	}
 }
