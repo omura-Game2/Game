@@ -13,7 +13,7 @@ public:
 	void Init();
 	//更新処理のオーバーライド
 	void Update();
-
+	float mxMax;
 	EScene GetNextScene();
 	//デストラクタの宣言
 	~CSceneGame();
