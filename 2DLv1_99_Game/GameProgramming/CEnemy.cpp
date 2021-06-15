@@ -27,12 +27,12 @@ void CEnemy::Update() {
 			EBullet->y = y;
 			//ˆÚ“®—ÊÝ’è
 			EBullet->mFx = (i - 2) % 2 * 2;
-			EBullet->mFy = (i - 1) % 2 * 2;
+			EBullet->mFy = (i - 1) % 2 * 2 * -1;
 			//—LŒø‚É‚·‚é
 			EBullet->mEnabled = true;
 			EBullet->mTag = EENEMYBULLET;
 		}
-		mFireCount = 60;
+		mFireCount = 100;
 	}
 	x += mFx;
 	y += mFy;
