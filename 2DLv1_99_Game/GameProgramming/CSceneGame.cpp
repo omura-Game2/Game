@@ -130,11 +130,7 @@ void CSceneGame::Update() {
 		}
 	}
 	//�`��͈͕ϐ��̍쐬
-	double mLeft = -400, mRight, mBottm = -300.0, mTop = 300.0;
-	//��ʔ͈͍��̐ݒ�
-	mLeft = CPlayer::spInstance->x - 550.0;
-	//��ʔ͈͉E�̐ݒ�
-	mRight = mLeft + 800.0;
+	double mLeft = -400.0, mRight = 400.0, mBottm = -300.0, mTop = 300.0;
 	//��ʔ͈͉��̐ݒ�
 	mBottm = CPlayer::spInstance->y - 350.0;
 	//��ʔ͈͏�̐ݒ�
