@@ -7,8 +7,8 @@ CEnemy::CEnemy()
 : mFx(1.0f), mFy(0.0f), mFireCount(60)
 {
 	mTag = EENEMY;
-	w = 25;
-	h = 25;
+	w = 20;
+	h = 20;
 }
 
 void CEnemy::Update() {
@@ -24,7 +24,7 @@ void CEnemy::Update() {
 			CBullet *EBullet = new CBullet();
 			//座標設定
 			EBullet->x = x;
-			EBullet->y = y;
+			EBullet->y = y - w - 10;
 			//移動量設定
 			EBullet->mFx = (i - 2) % 2 * 2;
 			EBullet->mFy = (i - 1) % 2 * 2 * -1;
@@ -32,11 +32,12 @@ void CEnemy::Update() {
 			EBullet->mEnabled = true;
 			EBullet->mTag = EENEMYBULLET;
 		}
-		mFireCount = 100;
+		mFireCount = 120;
 	}
 	x += mFx;
 	y += mFy;
 }
+
 /*
 親のCollisionをオーバーライドする
 衝突すると移動方向を反対にする
@@ -50,7 +51,10 @@ bool CEnemy::Collision(const CRectangle &r) {
 		case EBLOCK:
 			//衝突していれば反転
 			mFx *= -1;
-			mFy *= -1;
+			break;
+		case EENEMY:
+			mFx *= -1;
+			mFy *= 1;
 			break;
 		case EPLAYERBULLET:
 			//プレイヤーの弾に当たると、無効にする

@@ -19,7 +19,7 @@ void CBullet::Update() {
 		//ˆÚ“®
 		x += mFx;
 		y += mFy;
-		if (x > 800 || x < -1400 || y > 800 || y < -1400)
+		if (x > 800 || x < -1500 || y > 800 || y < -1500)
 			mEnabled = false;
 	}
 }
@@ -53,7 +53,18 @@ void CBullet::Collision(CRectangle *i, CRectangle *y) {
 				mEnabled = false;
 				return;
 			}
-
+		}
+		if (i->mTag == EENEMYBULLET && y->mTag == EENEMY) {
+			if (i->Collision(*y)) {
+				mEnabled = false;
+				return;
+			}
+		}
+		if (i->mTag == EENEMYBULLETB &&y->mTag == EENEMY){
+			if (i->Collision(*y)){
+				mEnabled = false;
+				return;
+			}
 		}
 	}
 }

@@ -7,6 +7,7 @@
 #include "CPlayer.h"
 #include "CEnemy.h"
 #include "CText.h"
+#include"CEnemyb.h"
 
 void CSceneGame::Init() {
 	//シーンの設定
@@ -18,36 +19,37 @@ void CSceneGame::Init() {
 
 	//クラスのメンバ変数への代入
 	CPlayer *Player = new CPlayer();
-	Player->x = 150;
-	Player->y = -1400;
+	Player->x = 250;
+	Player->y = -1500;
 	Player->w = 25;
 	Player->h = 25;
 	Player->mEnabled = true;
 
-	int map[19][8] =
+	int map[20][9] =
 	{
-		{ 9, 1, 1, 1, 1, 1, 1, 9 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 3, 0, 0, 2, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 2, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 2, 0, 0, 0, 2, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 2, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1 },
+		{ 9, 1, 1, 1, 1, 1, 1, 1, 9 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 3, 3, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 2, 0, 2, 0, 2, 0, 2, 1 },
+		{ 1, 2, 0, 2, 0, 2, 0, 2, 1 },
+		{ 1, 2, 0, 2, 0, 2, 0, 2, 1 },
+		{ 1, 2, 0, 2, 0, 2, 0, 2, 1 },
+		{ 1, 2, 0, 2, 0, 2, 0, 2, 1 },
+		{ 1, 2, 0, 2, 0, 2, 0, 2, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 	};
-	for (int j = 0; j < 19; j++) {
-		for (int i = 0; i < 8; i++) {
+	for (int j = 0; j < 20; j++) {
+		for (int i = 0; i < 9; i++) {
 			//mapの要素が1の時、四角形配置
 			if (map[j][i] == 1) {
 				CMap *Map = new CMap();
@@ -63,26 +65,26 @@ void CSceneGame::Init() {
 				Enemy->x = i * 100 - 350;
 				Enemy->y = j * -100 + 250;
 				//右へ移動
-				Enemy->mFx = 0;
-				Enemy->mFy = -1;
+				Enemy->mFx = -1;
+				Enemy->mFy = 0;
 			}
 			else if (map[j][i] == 3){
-				CEnemy *Enemy = new CEnemy();
-				Enemy->x = i * 100 - 350;
-				Enemy->y = j *-100 + 250;
+				CEnemyb *Enemyb = new CEnemyb();
+				Enemyb->x = i * 100 - 350;
+				Enemyb->y = j * -100 + 250;
 				//右へ移動
-				Enemy->mFx = 0;
-				Enemy->mFy = -1;
+				Enemyb->mFx = -1;
+				Enemyb->mFy = 0;
 			}
 			else if (map[j][i] == 9){
 				CMap *Map = new CMap();
 				//四角形に値を設定
 				Map->mEnabled = true;
 				Map->x = i * 100 - 350;
-				Map->y = j*-100 + 350;
+				Map->y = j * -100 + 350;
 				Map->w = 50;
 				Map->h = 50;
-				mxMax = Map->y + Map->h;
+				myMax = Map->y + Map->h;
 			}
 		}
 	}
@@ -130,14 +132,14 @@ void CSceneGame::Update() {
 		}
 	}
 	//描画範囲変数の作成
-	double mLeft = -400.0, mRight = 400.0, mBottm = -300.0, mTop = 300.0;
+	double mLeft = -400.0, mRight = 500.0, mBottm = -250.0, mTop = 250.0;
 	//画面範囲下の設定
-	mBottm = CPlayer::spInstance->y - 350.0;
+	mBottm = CPlayer::spInstance->y - 125.0;
 	//画面範囲上の設定
 	mTop = mBottm + 800.0f;
-	if (mTop > mxMax)
+	if (mTop > myMax)
 	{
-		float sa = mTop - mxMax;
+		float sa = mTop - myMax;
 		mTop -= sa;
 		mBottm -= sa;
 	}
@@ -161,6 +163,7 @@ void CSceneGame::Update() {
 CScene::EScene CSceneGame::GetNextScene() {
 	return mScene;
 }
+
 //デストラクタ
 CSceneGame::~CSceneGame() {
 	//全てのインスタンスを削除します

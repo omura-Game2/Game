@@ -34,7 +34,7 @@ void CPlayer::Update() {
 		}
 
 	if (CKey::Push('S')) {
-		y -= 3;
+		y -= 2;
 		mFx = 0;
 		mFy = -1;
 	}
@@ -51,13 +51,13 @@ void CPlayer::Update() {
 		Bullet->x = x;
 		Bullet->y = y;
 		//移動の値を設定
-		Bullet->mFx = mFx * 5;
-		Bullet->mFy = mFy * 5;
+		Bullet->mFx = mFx * 4;
+		Bullet->mFy = mFy * 4;
 		//有効にする
 		Bullet->mEnabled = true;
 		//プレイヤーの弾を設定
 		Bullet->mTag = CRectangle::EPLAYERBULLET;
-		FireCount = 10;
+		FireCount = 40;
 	}
 }
 
