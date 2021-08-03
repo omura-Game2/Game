@@ -9,6 +9,7 @@ public:
 	int FireCount;
 	CPlayer();
 	void Update();
+	int mAniCnt; //アニメーション用カウンタ
 	void Render();
 	static CPlayer*spInstance;
 

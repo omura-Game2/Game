@@ -32,7 +32,7 @@ void CEnemy::Update() {
 			EBullet->mEnabled = true;
 			EBullet->mTag = EENEMYBULLET;
 		}
-		mFireCount = 120;
+		mFireCount = 200;
 	}
 	x += mFx;
 	y += mFy;
@@ -68,7 +68,7 @@ bool CEnemy::Collision(const CRectangle &r) {
 	}
 	return false;
 }
-
+// 130  162  194  162
 void CEnemy::Render() {
 	if (mEnabled) {
 		CRectangle::Render(Texture, 146 - 16, 146 + 16, 178 + 16, 178 - 16);
